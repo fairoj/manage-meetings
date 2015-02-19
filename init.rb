@@ -5,4 +5,6 @@ Redmine::Plugin.register :manage_meetings do
   version '0.0.1'
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
+
+  menu :top_menu, :manage_meetings, { :controller => 'meetings', :action => 'index' }, :caption => 'Совещания', after: :help
 end
