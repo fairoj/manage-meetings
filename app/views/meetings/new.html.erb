@@ -5,6 +5,7 @@
     <%= javascript_include_tag 'jquery.datetimepicker', :plugin => 'manage_meetings' %>
 <% end %>
 <%= form_for @meeting do |f| %>
+	<%= error_messages_for 'meeting' %>
 	<table>
 		<tr>
 			<td style="text-align:right;"><%= label_tag('Тема совещания') %></td>
