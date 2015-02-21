@@ -1,2 +1,6 @@
-<p>index</p>
-<%= link_to 'Создать совещание', meetings_new_path %>
+<% @meetings.each do |t| %>
+	<p><%= link_to t.subject, meeting_path(t.id)  %> <%= link_to 'Удалить', t, method: :delete, data: { confirm: 'Уверены что хотите удалить совещание?' } %></p>
+<% end %>
+
+
+<%= link_to 'Создать совещание', new_meeting_path %>
