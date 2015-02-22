@@ -3,7 +3,7 @@ Redmine::Plugin.register :manage_meetings do
   author 'Artem Gladyshev'
   description 'This is a plugin for Redmine'
   version '0.0.1'
-  url 'https://github.com/fairoj/manage-meetings'
+  url 'https://github.com/fairoj/manage_meetings'
 
   project_module :manage_meetings do 
 		permission :meeting, meetings: :new
