@@ -1,23 +1,27 @@
-<h1><%= @meeting.subject %></h1>
-<table>
-	<tr>
-		<td>
-			Место проведения: <%= @meeting.venue.name%>
-		</td>
-		<td>
-			Цели и задачи: <%= @meeting.description_meeting%>
-		</td>
-		<td>
-			Время с <%= @meeting.start_date%> по <%= @meeting.finish_date%>
-		</td>
-		<td>
-			Результаты: <%= @meeting.decription_result%>
-		</td>
-		<td>
-			<%= link_to_attachments @meeting, thumbnails: true  %>
-		</td>
-		<td>
-			<%= @meeting.meeting_members.map {|member| member.user.name} %>
-		</td>
-	</tr>
-</table>
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'meeting', :plugin => 'manage_meetings' %>
+<% end %>
+<div class = "container issues box">
+	<h2><%= @meeting.subject %></h2>
+	<ul>
+			<li>
+				Место проведения: <%= @meeting.venue.name%>
+			</li>
+			<li>
+				Цели и задачи: <%= @meeting.description_meeting%>
+			</li>
+			<li>
+				Время с <%= @meeting.start_date.strftime("%d-%m-%Y  %R")%> по <%= @meeting.finish_date.strftime("%d-%m-%Y  %R")%>
+			</li>
+			<li>
+				Результаты: <%= @meeting.decription_result%>
+			</li>
+			<li>
+				Участники:
+				<% @meeting.meeting_members.each do |member|%>
+					<%= link_to member.user.name, user_path(member.user.id), class: 'user active' %>
+				<% end %>
+			</li>
+	</ul>
+	<%= link_to_attachments @meeting, thumbnails: true  %>
+</div>

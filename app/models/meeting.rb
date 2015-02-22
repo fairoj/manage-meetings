@@ -10,7 +10,12 @@ class Meeting < ActiveRecord::Base
   validates :start_date, presence: true
   validates :finish_date, presence: true
   validates :venue_id, presence: true
-  validate :not_conflux_time_venue, :not_conflux_time_user
+  validate :not_conflux_time_venue, :not_conflux_time_user, :comparison_date
+
+
+  def comparison_date
+    errors.add(:start_date, 'Дата начала совещания, должна быть раньше, чем дата окончания совещания') if start_date > finish_date 
+  end
 
   def not_conflux_time_venue
   	conflux_meetings = Meeting.where('start_date < :finish_date and finish_date > :start_date and venue_id == :venue_id',

@@ -1,6 +1,18 @@
-<% @meetings.each do |t| %>
-	<p><%= link_to t.subject, meeting_path(t.id)  %> <%= link_to 'Удалить', t, method: :delete, data: { confirm: 'Уверены что хотите удалить совещание?' } %></p>
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'meeting', :plugin => 'manage_meetings' %>
 <% end %>
 
-
-<%= link_to 'Создать совещание', new_meeting_path %>
+<div class="issues box container">
+	<div class="contextual">
+		<%= link_to 'Создать совещание', new_meeting_path, class: 'icon icon-add' %>
+	</div>
+	<table>
+		<% @meetings.each do |t| %>
+		<tr>
+		<td  style="text-align:left;"><%= link_to t.subject, meeting_path(t.id)  %></td>
+		<td  style="text-align:right;"><%= link_to 'Удалить', t, method: :delete, data: { confirm: 'Вы уверены, что хотите удалить данное совещание?' }, class: 'icon icon-del' %></td>
+		</tr>
+		<% end %>
+		
+	</table>
+</div>
